@@ -11,10 +11,14 @@ cartController.userAddItem = async (req, res) => {
     try {
 
         const user = await models.user.findOne({ where: { id: req.headers.authorization } })
+        const item = await models.item.findOne({ where: { id: req.body.id } })
 
-        const addItem = await user.createItem()
 
-        res.json({success : addItem})
+        const addItem = await user.createCart({
+            userId: user.id,
+            itemId: item.id,
+        })
+        res.json({item: addItem})
 
         
     } catch (error) {
