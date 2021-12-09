@@ -5,5 +5,10 @@ const models = require('../models')
 const itemController = {}
 
 
+itemController.getAllItems = async (req, res) => {
+    
+}
+
+
 
 module.exports = itemController

@@ -4,6 +4,9 @@ const userRoutes = require('exress').Router()
 // imports userController file we created
 const userController = require('../controllers/userController.')
 
+userRoutes.post('/login', userController.login)
+userRoutes.post('/', userController.createUser)
+userRoutes.get('/verify', userController.verifyUser)
 
 
 module.exports = userRoutes
