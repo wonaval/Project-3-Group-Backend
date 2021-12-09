@@ -28,32 +28,6 @@ itemController.getItem = async (req, res) => {
     }
 }
 
-itemController.getAllItems = async (req, res) => {
-    try {
-        
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({error : error.message})
-    }
-}
-
-itemController.getAllItems = async (req, res) => {
-    try {
-        
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({error : error.message})
-    }
-}
-
-itemController.getAllItems = async (req, res) => {
-    try {
-        
-    } catch (error) {
-        console.log(error)
-        res.status(404).json({error : error.message})
-    }
-}
 
 
 

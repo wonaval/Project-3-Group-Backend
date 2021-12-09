@@ -5,5 +5,8 @@ const itemRoutes = require('exress').Router()
 const itemController = require('../controllers/itemController.')
 
 
+itemRoutes.get('/', itemController.getAllItems)
+itemRoutes.get('/:id', itemController.getItem)
+
 
 module.exports = itemRoutes
