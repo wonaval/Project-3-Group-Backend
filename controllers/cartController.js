@@ -5,8 +5,12 @@ const models = require('../models')
 const cartController = {}
 
 
+// We're creating functions inside the controller object
+// Req are the requests before the api is fetched
+// Res is the response we get back after the fetch 
 
 
+// function adds an Item to a user's cart
 cartController.userAddItem = async (req, res) => {
     try {
 
@@ -28,13 +32,16 @@ cartController.userAddItem = async (req, res) => {
 }
 
 
+//function that gets all user's cart item
 cartController.getCart = async (req, res) => {
     try {
         
         const user = await models.user.findOne({ where: { id: req.headers.authorization } })
-        const cart = await models.cart.findAll({ where: { userId: user.id}})
+        
+        // finds all cart models where userId is the same as user.id
+        const carts = await models.cart.findAll({ where: { userId: user.id}})
 
-        res.json({item: cart})
+        res.json({items: carts})
 
 
     }
@@ -45,11 +52,15 @@ cartController.getCart = async (req, res) => {
 }
 
 
+// function that deletes 1 item from user's cart
 cartController.deleteItemFromCart = async (req, res) => {
     try {
         
         const user = await models.user.findOne({ where: { id: req.headers.authorization } })
-        const cartItem = await models.cart.findOne({ where: { itemId: req.params.id}})
+        const cartItem = await models.cart.findOne({ where: { 
+            itemId: req.params.id,
+            userId: user.id
+        }})
 
         if( user.id === cartItem.userId){
             const removeCartItem = await cartItem.destroy()
@@ -66,17 +77,19 @@ cartController.deleteItemFromCart = async (req, res) => {
 }
 
 
+// function that updates the checkout date forEach item
 cartController.updateCheckOutDate = async (req, res) => {
     try {
         
         const user = await models.user.findOne({ where: { id: req.headers.authorization } })
+        // gets all carts associated with user since we're getting it from user.id
         const carts = await models.cart.findAll({ where: { userId: user.id}})
 
+        // Loops through each cart from user and inside, updates the date
         carts.forEach(async(element) => {
             await element.update({checkoutDate : new Date()})
         });
 
-        // const cartDate = await carts.update()
         res.json({ message: 'cart item updated successfully', carts})
 
 
