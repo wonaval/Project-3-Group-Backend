@@ -4,8 +4,13 @@ const models = require('../models')
 // creating an empty object to add functions in the object
 const userController = {}
 
-// creates a function inside the controller object
-// function creates a user
+
+// We're creating functions inside the controller object
+// Req are the requests before the api is fetched
+// Res is the response we get back after the fetch 
+
+
+// Function creates a user
 userController.createUser = async (req, res) => {
     try {
         const user = await models.user.create({
@@ -24,9 +29,12 @@ userController.createUser = async (req, res) => {
 }
 
 
+// Function logs user in
 userController.login = async (req, res) => {
     try{
-        const user = await models.user.findOne({where: { name: req.body.name }})
+        
+        // Finds user from email
+        const user = await models.user.findOne({where: { email: req.body.email }})
 
         if ( user && user.password === req.body.password){
             res.json({message: 'success', user: user})
@@ -43,6 +51,7 @@ userController.login = async (req, res) => {
 }
 
 
+// Function verifies user 
 userController.verifyUser = async (req, res) => {
     try{
         const user = await models.user.findOne({ where: { id: req.headers.authorization }})
@@ -59,15 +68,6 @@ userController.verifyUser = async (req, res) => {
 }
 
 
-// userController.login = async (req, res) => {
-//     try{
-        
-//     }
-//     catch(error){
-//         console.log(error)
-//         res.status(400).json(error)
-//     }
-// }
 
-
+// exports userController Object so we can import thorough routes
 module.exports = userController

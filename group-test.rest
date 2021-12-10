@@ -1,0 +1,124 @@
+// DOWNLOAD "REST CLIENT" FROM VS CODE EXTENTION
+
+// ### SEPERATES EACH REQUEST
+
+// WRITE METHOD (POST, GET, ETC) AND PATH IN FIRST LINE
+
+// HEADERS ARE TYPED UNDERNEATH (Content-Type: application/json) && (Authorization : 2) ARE HEADERS
+
+// INSIDE OF {} IS WHERE REQ.BODY IS PLACE FOR THE JSON INFOMATION
+
+// TO TYPE INSIDE REQ.BODY, ADD (Content-Type: application/json) IN HEADER TO ACCEPT JSON
+
+
+
+
+
+
+
+////////////////////////     USER ROUTES     ////////////////////////
+
+
+// creates a new User
+POST http://localhost:3001/user
+Content-Type: application/json
+
+{
+    "name" : "Luis22",
+    "email" : "test22@gmail.com",
+    "password" : "123"
+}
+
+
+
+
+###
+
+// Logs user in by finding user through email and checks if passwords are the same
+POST http://localhost:3001/user/login
+Content-Type: application/json
+
+
+{
+    "name" : "Luis22",
+    "email" : "test2@gmail.com",
+    "password" : "123"
+}
+
+
+
+
+###
+
+// veirfies User from Authorization
+GET http://localhost:3001/user/verify
+Authorization : 2
+
+
+
+
+
+////////////////////////     ITEM ROUTES     ////////////////////////
+
+
+
+###
+
+// Gets all item available 
+GET http://localhost:3001/item
+
+
+
+
+###
+
+// Gets 1 item from parameter
+GET http://localhost:3001/item/1
+
+
+
+
+
+////////////////////////     Cart ROUTES     ////////////////////////
+
+
+###
+
+// Creates a cart and gets both userId and ItemId from Authorization and Body
+Post http://localhost:3001/cart
+Content-Type: application/json
+Authorization : 2
+
+
+{
+    "id" : 1
+}
+
+
+
+
+###
+
+// Gets all carts thats from user from header
+GET http://localhost:3001/cart
+Authorization : 2
+
+
+
+
+###
+
+// Gets the from item from parameter and user from Authorization header 
+DELETE http://localhost:3001/cart/1 HTTP/1.1
+Authorization : 2
+
+
+
+
+###
+
+// updates checkoutDate with a new Date()
+PUT http://localhost:3001/cart HTTP/1.1
+Authorization : 2
+
+
