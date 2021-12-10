@@ -11,6 +11,7 @@ userController.createUser = async (req, res) => {
         const user = await models.user.create({
             // creates where name from user is the same as request body
             name: req.body.name,
+            email: req.body.email,
             password: req.body.password
         })
 
