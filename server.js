@@ -12,7 +12,7 @@ const routesReport = require('rowdy-logger').begin(app)
 // accepts json formatting
 app.use(express.json())
 
-// allows us to fetch our api
+// allows us to fetch our api in the frontEnd
 app.use(require('cors')())
 
 // importing routes file we created

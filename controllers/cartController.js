@@ -21,6 +21,7 @@ cartController.userAddItem = async (req, res) => {
         const addItem = await models.cart.create({
             userId: user.id,
             itemId: item.id,
+            checkedOut: false
         })
         res.json({item: addItem})
 
@@ -62,10 +63,20 @@ cartController.deleteItemFromCart = async (req, res) => {
             userId: user.id
         }})
 
-        if( user.id === cartItem.userId){
+
+        
+
+        if ( user.id === cartItem.userId ){
+            // res.json({item : cartItem})
             const removeCartItem = await cartItem.destroy()
-            res.json({ message: 'cart item deleted successfully', removeCartItem })
+            res.json({ message: 'cart item deleted successfully'})
         }
+
+
+        // if( user.id === cartItem.userId){
+        //     const removeCartItem = await cartItem.destroy()
+        //     res.json({ message: 'cart item deleted successfully', removeCartItem })
+        // }
         else { res.status(401).json({ error: 'not your fav' }) }
 
 
@@ -87,7 +98,11 @@ cartController.updateCheckOutDate = async (req, res) => {
 
         // Loops through each cart from user and inside, updates the date
         carts.forEach(async(element) => {
-            await element.update({checkoutDate : new Date()})
+            await element.update( { 
+                checkoutDate : new Date(),
+                checkedOut : true
+            
+            } )
         });
 
         res.json({ message: 'cart item updated successfully', carts})
@@ -99,6 +114,11 @@ cartController.updateCheckOutDate = async (req, res) => {
         res.status(404).json({error : error.message})
     }
 }
+
+
+
+
+
 
 
 

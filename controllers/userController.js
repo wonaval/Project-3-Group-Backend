@@ -32,7 +32,7 @@ userController.createUser = async (req, res) => {
 // Function logs user in
 userController.login = async (req, res) => {
     try{
-        
+
         // Finds user from email
         const user = await models.user.findOne({where: { email: req.body.email }})
 
@@ -58,6 +58,24 @@ userController.verifyUser = async (req, res) => {
         
         if (user) { res.json({ user: user }) }
         else { res.status(404).json({ message: 'user not found' }) }
+
+
+    }
+    catch(error){
+        console.log(error)
+        res.status(400).json(error)
+    }
+}
+
+
+// user updates form which will handle both address and credit card
+userController.updateForm = async (req, res) => {
+    try{
+        const user = await models.user.findOne({ where: { id: req.headers.authorization }})
+        
+        const update = user.update(req.body)
+
+        res.json( {message : 'update successfully', update} )
 
 
     }
