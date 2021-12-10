@@ -53,7 +53,7 @@ cartController.deleteItemFromCart = async (req, res) => {
 
         if( user.id === cartItem.userId){
             const removeCartItem = await cartItem.destroy()
-            res.json({ message: 'user post deleted sucessfully', removeCartItem })
+            res.json({ message: 'cart item deleted successfully', removeCartItem })
         }
         else { res.status(401).json({ error: 'not your fav' }) }
 
@@ -64,6 +64,29 @@ cartController.deleteItemFromCart = async (req, res) => {
         res.status(404).json({error : error.message})
     }
 }
+
+
+cartController.updateCheckOutDate = async (req, res) => {
+    try {
+        
+        const user = await models.user.findOne({ where: { id: req.headers.authorization } })
+        const carts = await models.cart.findAll({ where: { userId: user.id}})
+
+        carts.forEach(async(element) => {
+            await element.update({checkoutDate : new Date()})
+        });
+
+        // const cartDate = await carts.update()
+        res.json({ message: 'cart item updated successfully', carts})
+
+
+    }
+    catch(error){
+        console.log(error)
+        res.status(404).json({error : error.message})
+    }
+}
+
 
 
 
