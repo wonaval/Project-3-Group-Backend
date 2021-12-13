@@ -1,8 +1,8 @@
-// getting the models folder
+// Getting the models folder
 const models = require('../models')
 const item = require('../models/item')
 
-// creating an empty object to add functions in the object
+// Creating an empty object to add functions in the object
 const itemController = {}
 
 
@@ -11,7 +11,7 @@ const itemController = {}
 // Res is the response we get back after the fetch 
 
 
-// function gets all item from database
+// Function gets all item from database
 itemController.getAllItems = async (req, res) => {
     try {
         const items = await models.item.findAll()
@@ -23,10 +23,13 @@ itemController.getAllItems = async (req, res) => {
     }
 }
 
-// function gets on item from database
+// Function gets one item from database
 itemController.getItem = async (req, res) => {
     try {
-        const item = await models.item.findOne({where: { id: req.params.id } })
+        const item = await models.item.findOne({
+            where: { id: req.params.id }
+        })
+
         res.json({item: item})
         
     } catch (error) {
@@ -35,7 +38,5 @@ itemController.getItem = async (req, res) => {
     }
 }
 
-
-
-// exports itemController Object so we can import thorough routes
+// Exports itemController Object so we can import thorough routes
 module.exports = itemController

@@ -42,7 +42,7 @@ cartController.getCart = async (req, res) => {
         // finds all cart models where userId is the same as user.id
         const carts = await models.cart.findAll({ where: { userId: user.id}})
 
-        res.json({items: carts})
+        res.json({item: carts})
 
 
     }
@@ -92,13 +92,22 @@ cartController.deleteItemFromCart = async (req, res) => {
 cartController.updateCheckOutDate = async (req, res) => {
     try {
         
-        const user = await models.user.findOne({ where: { id: req.headers.authorization } })
+        const user = await models.user.findOne({ 
+            where: {
+                id: req.headers.authorization
+            }
+        })
+
         // gets all carts associated with user since we're getting it from user.id
-        const carts = await models.cart.findAll({ where: { userId: user.id}})
+        const carts = await models.cart.findAll({
+            where: {
+                userId: user.id
+            }
+        })
 
         // Loops through each cart from user and inside, updates the date
         carts.forEach(async(element) => {
-            await element.update( { 
+            await element.update( {
                 checkoutDate : new Date(),
                 checkedOut : true
             

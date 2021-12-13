@@ -11,7 +11,7 @@ module.exports = {
 		 *   isBetaMember: false
 		 * }], {});
 		 */
-         await queryInterface.bulkInsert('items', [
+         	await queryInterface.bulkInsert('items', [
             {
 				name: 'Fiddle Leaf Fig',
 				description: 'Tall, sculptural, and dramatic. This plant will flourish in the right conditions.',
