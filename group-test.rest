@@ -14,8 +14,6 @@
 
 
 
-
-
 ////////////////////////     USER ROUTES     ////////////////////////
 
 
@@ -87,11 +85,11 @@ GET http://localhost:3001/item/1
 // Creates a cart and gets both userId and ItemId from Authorization and Body
 Post http://localhost:3001/cart
 Content-Type: application/json
-Authorization : 2
+Authorization : 6
 
 
 {
-    "id" : 1
+    "id" : 12
 }
 
 
@@ -101,7 +99,7 @@ Authorization : 2
 
 // Gets all carts thats from user from header
 GET http://localhost:3001/cart
-Authorization : 2
+Authorization : 6
 
 
 
@@ -109,8 +107,8 @@ Authorization : 2
 ###
 
 // Gets the from item from parameter and user from Authorization header 
-DELETE http://localhost:3001/cart/1 HTTP/1.1
-Authorization : 2
+DELETE http://localhost:3001/cart HTTP/1.1
+Authorization : 6
 
 
 
@@ -119,6 +117,6 @@ Authorization : 2
 
 // updates checkoutDate with a new Date()
 PUT http://localhost:3001/cart HTTP/1.1
-Authorization : 2
+Authorization : 6
 
 

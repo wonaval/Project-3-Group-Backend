@@ -6,7 +6,7 @@ const cartController = require('../controllers/cartController')
 
 cartRoutes.post('/', cartController.userAddItem)
 cartRoutes.get('/', cartController.getCart)
-cartRoutes.put('/', cartController.updateCheckOutDate)
+cartRoutes.post('/update', cartController.updateCheckOutDate)
 cartRoutes.delete('/:id', cartController.deleteItemFromCart)
 
 module.exports = cartRoutes
