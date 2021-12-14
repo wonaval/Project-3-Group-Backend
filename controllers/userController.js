@@ -67,25 +67,5 @@ userController.verifyUser = async (req, res) => {
     }
 }
 
-
-// user updates form which will handle both address and credit card
-userController.updateForm = async (req, res) => {
-    try{
-        const user = await models.user.findOne({ where: { id: req.headers.authorization }})
-        
-        const update = user.update(req.body)
-
-        res.json( {message : 'update successfully', update} )
-
-
-    }
-    catch(error){
-        console.log(error)
-        res.status(400).json(error)
-    }
-}
-
-
-
 // exports userController Object so we can import thorough routes
 module.exports = userController

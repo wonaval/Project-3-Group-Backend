@@ -17,7 +17,9 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     itemId: DataTypes.INTEGER,
     checkoutDate: DataTypes.DATE,
-    checkedOut : DataTypes.BOOLEAN
+    checkedOut : DataTypes.BOOLEAN,
+    creditCard : DataTypes.STRING,
+    address : DataTypes.STRING,
   }, {
     sequelize,
     modelName: 'cart',
