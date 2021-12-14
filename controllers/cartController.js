@@ -10,7 +10,7 @@ const cartController = {}
 // Res is the response we get back after the fetch 
 
 
-// function adds an Item to a user's cart
+// Function adds an Item to a user's cart
 cartController.userAddItem = async (req, res) => {
     try {
 
@@ -53,7 +53,7 @@ cartController.getCart = async (req, res) => {
 }
 
 
-// function that deletes 1 item from user's cart
+// Function that deletes 1 item from user's cart
 cartController.deleteItemFromCart = async (req, res) => {
     try {
         
