@@ -34,7 +34,7 @@ cartController.userAddItem = async (req, res) => {
 }
 
 
-//function that gets all user's cart item
+// Function that gets all user's cart item
 cartController.getCart = async (req, res) => {
     try {
         
