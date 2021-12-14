@@ -59,8 +59,9 @@ cartController.deleteItemFromCart = async (req, res) => {
         
         const user = await models.user.findOne({ where: { id: req.headers.authorization } })
         const cartItem = await models.cart.findOne({ where: { 
-            itemId: req.params.id,
-            userId: user.id
+            id: req.params.id,
+            userId: user.id,
+            checkedOut: false
         }})
 
 
@@ -99,11 +100,11 @@ cartController.updateCheckOutDate = async (req, res) => {
                 checkoutDate: null
             }
         })
-
+        const orderDate = new Date()
         // Loops through each cart from user and inside, updates the date
         carts.forEach(async(element) => {
             await element.update( {
-                checkoutDate : new Date(),
+                checkoutDate : orderDate,
                 checkedOut : true,
                 address: req.body.address,
                 creditCard: req.body.credit
