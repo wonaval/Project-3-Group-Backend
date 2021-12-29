@@ -8,7 +8,7 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-     await queryInterface.addColumn("carts", 'checkedOut', Sequelize.BOOLEAN)
+    await queryInterface.addColumn('carts', 'checkedOut', Sequelize.BOOLEAN);
   },
 
   down: async (queryInterface, Sequelize) => {
@@ -18,5 +18,5 @@ module.exports = {
      * Example:
      * await queryInterface.dropTable('users');
      */
-  }
+  },
 };
